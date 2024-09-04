@@ -16,9 +16,15 @@ public class Enemy : CurrentHP
         if (_hp <= 0)
         {
             GameManager.Instance.Remove(this);
-            Destroy(gameObject);
+            Die();
             return;
         }
 
+    }
+    // 敵が死亡する処理
+    void Die()
+    {
+        // ここで敵の死亡時処理を追加します（例: アニメーション再生やアイテムドロップ）
+        Destroy(gameObject);
     }
 }

@@ -1,8 +1,5 @@
-using Cinemachine.Utility;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerCon : MonoBehaviour
@@ -14,6 +11,7 @@ public class PlayerCon : MonoBehaviour
     /// </summary>
     CharacterController con;
     Animator anim;
+    AttackSword _attackSword;
 
     [SerializeField]
     float _normalSpeed = 3f; // 通常時の移動速度
@@ -85,7 +83,10 @@ public class PlayerCon : MonoBehaviour
             walkSpeed.y = 0;
             anim.SetFloat("Speed", walkSpeed.magnitude);
         }
-
+        if (Input.GetButtonDown("Fire1")) // Fire1 は通常、マウスの左クリックやコントローラーのボタンに割り当てられています
+        {
+            _attackSword.Attack();
+        }
         if (Input.GetButtonDown(_attackButton))
         {
             //Freeze(_freezeSecondsOnAttack, () => anim.SetBool("AttackTrigger", false));
