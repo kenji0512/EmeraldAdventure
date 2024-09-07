@@ -47,6 +47,10 @@ public class PlayerCon : MonoBehaviour
         {
             Move();
         }
+        //else
+        //{
+        //    con.Move(_moveDirection * 0);
+        //}BoolでAnimationを判定させることをすれば解決
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -55,10 +59,6 @@ public class PlayerCon : MonoBehaviour
             walkSpeed.y = 0;
             anim.SetFloat("Speed", walkSpeed.magnitude);
         }
-        //if (Input.GetButtonDown("Fire1")) // Fire1 は通常、マウスの左クリックやコントローラーのボタンに割り当てられています
-        //{
-        //    _attackSwordanim.Attack();
-        //}
 
 
     }
