@@ -9,24 +9,20 @@ public class PlayerCon : MonoBehaviour
     AttackSword _attackSwordanim;
 
     [SerializeField]
-    float _normalSpeed = 3f; // 通常時の移動速度
+    protected float _normalSpeed = 3f; // 通常時の移動速度
     [SerializeField]
-    float _sprintSpeed = 5f; // ダッシュ時の移動速度
+    protected float _sprintSpeed = 5f; // ダッシュ時の移動速度
     [SerializeField]
-    float _jump = 4f;        // ジャンプ力
+    protected float _jump = 4f;        // ジャンプ力
     [SerializeField]
-    float _gravity = 9.87f;    // 重力の大きさ
-    //[SerializeField] string _attackButton = "Fire1";    //攻撃（パンチ）ボタン
-    //[SerializeField] float _freezeSecondsOnAttack = 0.3f;   //攻撃時に移動不可にする秒数
-    //[SerializeField] Collider _attackTrigger;   //攻撃判定となるトリガー
-    //[SerializeField] float _attackPower = 20f;  //攻撃が当たった時に加える力
+    protected float _gravity = 9.87f;    // 重力の大きさ
 
 
 
     Vector3 _moveDirection = Vector3.zero;
     private int _jumpCount = 0;
     /// <summary>接地フラグ</summary>
-    bool _isGrounded = false;
+    protected bool _isGrounded = false;
 
 
     void Start()

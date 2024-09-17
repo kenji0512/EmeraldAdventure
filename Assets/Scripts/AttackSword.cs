@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 
-public class AttackSword : PlayerCon
+public class AttackSword : MonoBehaviour
 {
     public Transform attackPoint; // UŒ‚‚Ì‹N“_
     public float attackRange = 0.5f; // UŒ‚‚Ì”ÍˆÍ
