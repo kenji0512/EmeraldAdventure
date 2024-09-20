@@ -49,8 +49,5 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public List<Enemy> GetEnemies()
-    {
-        return new List<Enemy>(_enemies); // 敵のリストを返す
-    }
+    public IReadOnlyList<Enemy> GetEnemies() => _enemies.AsReadOnly(); // 敵のリストを読み取り専用で返す
 }

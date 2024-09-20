@@ -115,6 +115,11 @@ public class Enemy : CurrentHP
             Debug.Log("Chasing player at position: " + player.position);
         }
         //agent.speed = defaultMoveSpeed;
+        // HPƒo[‚ğ“G‚Ì“ª‚Ìã‚É’Ç]‚³‚¹‚é
+        //if (hpSlider != null)
+        //{
+        //    hpSlider.transform.position = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 2); // “ª‚Ìã‚ÉˆÚ“®
+        //}
     }
     void Patrol()
     {
