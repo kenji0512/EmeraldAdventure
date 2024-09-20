@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class PlayerCon : MonoBehaviour
+public class PlayerCon : CurrentHP
 {
     CharacterController con;
     Animator anim;
