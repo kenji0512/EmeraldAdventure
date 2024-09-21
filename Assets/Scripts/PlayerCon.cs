@@ -55,7 +55,10 @@ public class PlayerCon : CurrentHP
             walkSpeed.y = 0;
             anim.SetFloat("Speed", walkSpeed.magnitude);
         }
-
+        if (_currentHP <= 0)
+        {
+            return;
+        }
 
     }
     private void LateUpdate()

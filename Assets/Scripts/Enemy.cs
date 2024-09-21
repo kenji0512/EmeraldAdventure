@@ -26,7 +26,7 @@ public class Enemy : CurrentHP
         _player = GameObject.FindObjectOfType<PlayerCon>();
         if (_player == null)
         {
-            Debug.LogError("Player not found in the scene.");
+            //Debug.LogError("Player not found in the scene.");
             return; // プレイヤーが見つからなければ処理を中止
         }
         player = _player.transform; // プレイヤーのTransformを取得
@@ -70,7 +70,7 @@ public class Enemy : CurrentHP
             Debug.LogWarning("No patrol points assigned.");
         }
 
-        if (_hp == null)
+        if (_currentHP == null)
         {
             Debug.LogError("_hp is not initialized.");
         }
@@ -84,7 +84,7 @@ public class Enemy : CurrentHP
         if (player == null) return;
 
 
-        if (_hp <= 0)
+        if (_currentHP <= 0)
         {
             GameManager.Instance.Remove(this);
             Die();
@@ -136,7 +136,7 @@ public class Enemy : CurrentHP
     // 敵が死亡する処理
     void Die()
     {
-        // ここで敵の死亡時処理を追加します（例: アニメーション再生やアイテムドロップ）
+        // ここで敵の死亡時処理を追加します
         animator.SetTrigger("isDie"); // 死亡アニメーションを再生(まだ設定していない)
         StartCoroutine(HandleDeath());
     }
