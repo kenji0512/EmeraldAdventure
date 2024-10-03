@@ -7,7 +7,7 @@ public class PlayerCon : CurrentHP
     CharacterController con;
     Animator anim;
     AttackSword _attackSwordanim;
-
+    public EnemyManager EnemyMGR;
     [SerializeField]
     protected float _normalSpeed = 3f; // 通常時の移動速度
     [SerializeField]
@@ -30,6 +30,7 @@ public class PlayerCon : CurrentHP
         con = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
         _attackSwordanim = GetComponentInChildren<AttackSword>();
+        EnemyMGR = new EnemyManager(this);
         // マウスカーソルを非表示にし、位置を固定
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -120,5 +121,17 @@ public class PlayerCon : CurrentHP
 
 
         con.Move(_moveDirection * Time.deltaTime);
+    }
+    public void Locked ()
+    {
+        if (Input.GetAxis("Ltrigger") > 0.9f)
+        {
+            Enemy enemy = EnemyMGR.GetNearEnemy();
+            if (enemy != null)
+            {
+                //あとでenemyにAtentionメソッドを追記します。
+                enemy.Attention();
+            }
+        }
     }
 }

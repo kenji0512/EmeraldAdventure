@@ -24,13 +24,13 @@ public class EnemyManager
         enemies.Remove(e);
     }
 
-    public Enemy getNearEnemy()
+    public Enemy GetNearEnemy()
     {
         Enemy nearEnemy = null;
         float minDistance = 100f;
         foreach (var e in enemies)
         {
-            float distance = getDistance(player.transform.position, e.transform.position);
+            float distance = GetDistance(player.transform.position, e.transform.position);
             if (minDistance > distance)
             {
                 minDistance = distance;
@@ -40,7 +40,7 @@ public class EnemyManager
         return nearEnemy;
     }
 
-    private float getDistance(Vector3 a, Vector3 b)
+    public float GetDistance(Vector3 a, Vector3 b)
     {
         Vector3 dv = a - b;
         return Mathf.Pow((dv.x * dv.x + dv.y * dv.y + dv.z * dv.z), 0.5f);

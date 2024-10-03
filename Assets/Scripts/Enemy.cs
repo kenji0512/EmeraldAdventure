@@ -7,11 +7,14 @@ public class Enemy : CurrentHP
 {
     private PlayerCon _player;
     EnemyAttack _enemyAttack;
+    private EnemyManager _enemyManager;
     //private bool isDead = false; // 死亡状態をチェックするフラグ
     public Animator animator; // Animatorコンポーネントへの参照
     public Transform[] patrolPoints;
     public float chaseRange = 10f;
     protected float distanceToPlayer;
+    private readonly float AttentionDistance = 4f;
+    public bool isDrawingAttention = false;
     public float attackRange = 2f;  //攻撃範囲の判定用
     protected float defaultMoveSpeed = 2f;
     public float MoveSpeed { set; get; }
@@ -147,7 +150,42 @@ public class Enemy : CurrentHP
         yield return new WaitForSeconds(2f); // アニメーションの長さに応じて調整
         Destroy(gameObject);
     }
+    public void Attention ()
+    {
+        _player.transform.LookAt(transform.position);
+        isDrawingAttention = true;
+    }
+    public void UnAttention ()
+    {
+        isDrawingAttention = false;
+    }
+    // 画面外にでた
+    private void OnBecameInvisible()
+    {
+        _player.EnemyMGR.DeleteEnemy(this);
+    }
 
+    // 画面内に入った
+    private void OnBecameVisible()
+    {
+        _player.EnemyMGR.AddEnemy(this);
+    }
+
+    private void OnWillRenderObject()
+    {
+        float distance = _enemyManager.GetDistance(_player.transform.position, transform.position);
+        transform.Find("TargetPoint").GetComponent<SpriteRenderer>().enabled = distance < AttentionDistance;
+
+        // あとで記載
+        //if (_enemyManager.getDistance() < AttentionDistance)
+        //{
+        //    transform.FindChild("TargetPoint").GetComponent<SpriteRenderer>().enabled = true;
+        //}
+        //else
+        //{
+        //    transform.FindChild("TargetPoint").GetComponent<SpriteRenderer>().enabled = false;
+        //}
+    }
     private void OnDrawGizmosSelected()
     {
         if (chaseRange <= 0 || attackRange <= 0)
